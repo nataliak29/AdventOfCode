@@ -1,5 +1,8 @@
+#Instructions:https://adventofcode.com/2020/day/4
+
 import os
 import re
+
 def get_data(filename):
     folder = os.path.dirname(os.path.abspath(__file__))
     input_file = os.path.join(folder, filename)

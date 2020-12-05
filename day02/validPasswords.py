@@ -1,3 +1,5 @@
+#Instructions:https://adventofcode.com/2020/day/2
+
 import os
 import numpy as np
 

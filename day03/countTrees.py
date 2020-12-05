@@ -1,3 +1,5 @@
+#Instructions:https://adventofcode.com/2020/day/3
+
 import os
 
 def get_data(filename):
