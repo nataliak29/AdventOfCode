@@ -1,3 +1,4 @@
+#Instructions:https://adventofcode.com/2020/day/8
 import os
 
 def get_data(filename):
