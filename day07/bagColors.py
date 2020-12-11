@@ -34,9 +34,9 @@ def parse_rules(data):
     return rules_bags
     
 
-data=get_data("input.txt")
-rules_bags=parse_rules(data)
-
+#data=get_data("test.txt")
+#rules_bags=parse_rules(data)
+#print(rules_bags)
 def find_parents(rules_bags,child_bag):
     parents_count=0
     parents=set()
@@ -52,55 +52,51 @@ def find_parents(rules_bags,child_bag):
             break
     return parents
 
-parents=find_parents(rules_bags,"shiny gold")
-print("Number of bag colors that can eventually contain at least one shiny gold bag:",len(parents))
+
+def bag_contains(target,bag):
+   
+    if  bag==None or len(bag)==0: #if no children are found return false
+        return False
+    for key in bag:     
+        if key[1]==target: #check if bag contain target and return true
+            return True 
+    for key in bag:       
+        if bag_contains(target,data.get(key[1])) == True: #else look up bagContains for every child
+            return True
+    return False
 
 
+def count_parents(data,target):
+    parents_count=0
+    for key,bag in data.items():
+        if bag_contains(target,bag)==True:
+            parents_count+=1
+    return parents_count
+
+#data={'shiny gold': [(10, 'dark olive'), (2, 'vibrant plum')], 'dark olive': [(3, 'faded blue'), (4, 'dotted black')]}
+#bag=[(1, 'dark olive'), (2, 'vibrant plum')]
+
+    
+def bag_children(target):
+  count = 0
+  children=data.get(target)
+  if children==None:
+      return count
+  
+  for bag in children:
+      #print("bag",bag,"count start",count)
+      count += bag[0] + bag[0] * bag_children(bag[1])
+      #print("count end",count)
+
+  return count
+
+target="shiny gold"
+data=parse_rules(get_data("input.txt"))
+print(count_parents(data,"shiny gold"),"bag colors can eventually contain at least one shiny gold bag")
+
+print("answer:",bag_children(target))
 
 
+    
 
 
-
-
-
-
-# key="light red"
-# count=0
-# i=0
-# while i<20:
-#     print("key",key)
-#     value=rules_bags.get(key)
-#     for bag in value:
-#         key=bag
-#         print("bag",bag)
-#         if bag=="shiny gold":
-#             print("shiny gold found!!!")
-#             count+=1
-#             break
-#         elif bag=="no":
-#             break
-
-
-# count=0
-# for key,value in rules_bags.items(): 
-#     print("key:",key)
-#     for bag in value:
-#         print("bag in value:",bag)
-#         new_value=""
-#         while new_value!='no':
-#             new_key=bag
-#             new_value=rules_bags.get(new_key)
-#             print("new value",new_value)
-#         count+=1
-
-
-# freq={}
-# for key,value in rules_bags.items(): 
-#     print("key:",key)
-#     for bag in value:
-#         print("bag:",bag)
-#         try:
-#             freq[bag]=freq.get(bag) +1
-#         except:
-#             freq[bag]=1
-# print(freq)
