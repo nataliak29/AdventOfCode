@@ -94,7 +94,7 @@ target="shiny gold"
 data=parse_rules(get_data("input.txt"))
 print(count_parents(data,"shiny gold"),"bag colors can eventually contain at least one shiny gold bag")
 
-print("answer:",bag_children(target))
+print(bag_children(target),"individual bags are required inside single shiny gold bag")
 
 
     
