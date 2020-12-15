@@ -35,7 +35,7 @@ next_bus = min(next_buses.keys(), key=(lambda k: next_buses[k]))
 print("Answer for part 1",next_bus*next_buses[next_bus][1])
 
 
-
+#https://www.reddit.com/r/adventofcode/comments/kc4njx/2020_day_13_solutions/
 def find_timest(data):
 
     buses=data[1].split(",")
